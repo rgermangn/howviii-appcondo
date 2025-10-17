@@ -3,4 +3,5 @@
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
+    <string name="bem_vindo_dashboard">Bem-vindo à Dashboard!</string>
 </resources>

@@ -8,7 +8,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import com.rggn.appcondominio.home.DashboardActivity
 import com.rggn.appcondominio.R
+import org.junit.After
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -44,5 +49,35 @@ class LoginUITest {
         // Assert
         onView(withId(R.id.status_text_view)).check(matches(withText("Credenciais inválidas")))
 
+    }
+
+    @Test
+    fun login_withEmptyCredentials_showsFailMessage() {
+        // Arrange
+        onView(withId(R.id.email_edit_text)).perform(replaceText(""))
+        onView(withId(R.id.password_edit_text)).perform(replaceText(""))
+
+        // Act
+        onView(withId(R.id.login_button)).perform(click())
+
+        // Assert
+        onView(withId(R.id.status_text_view)).check(matches(withText("Credenciais inválidas")))
+    }
+
+    @Test
+    fun login_withValidCredentials_shouldNavigateToDashboard() {
+        // Arrange
+        onView(withId(R.id.email_edit_text)).perform(replaceText("morador@teste.com"))
+        onView(withId(R.id.password_edit_text)).perform(replaceText("123"))
+
+        Intents.init()
+
+        // Act
+        onView(withId(R.id.login_button)).perform(click())
+
+        // Assert
+        intended(hasComponent(DashboardActivity::class.java.name))
+
+        Intents.release()
     }
 }

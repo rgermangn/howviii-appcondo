@@ -63,5 +63,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     androidTestImplementation(libs.androidx.runner)
+    androidTestImplementation(libs.androidx.espresso.intents)
 
 }

@@ -4,4 +4,5 @@
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
     <string name="bem_vindo_dashboard">Bem-vindo à Dashboard!</string>
+    <string name="invalid_credentials">Credenciais inválidas</string>
 </resources>

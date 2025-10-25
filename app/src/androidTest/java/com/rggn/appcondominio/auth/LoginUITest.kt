@@ -4,6 +4,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -13,7 +14,7 @@ import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import com.rggn.appcondominio.home.DashboardActivity
 import com.rggn.appcondominio.R
-import org.junit.After
+import org.hamcrest.CoreMatchers.not
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,18 +25,18 @@ class LoginUITest {
     @get:Rule
     val activityRule = ActivityScenarioRule(LoginActivity::class.java)
 
-    @Test
-    fun login_withValidCredentials_showsSuccessMessage() {
-        // Arrange
-        onView(withId(R.id.email_edit_text)).perform(replaceText("morador@teste.com"))
-        onView(withId(R.id.password_edit_text)).perform(replaceText("123"))
-
-        // Act
-        onView(withId(R.id.login_button)).perform(click())
-
-        // Assert
-        onView(withId(R.id.status_text_view)).check(matches(withText("Login bem-sucedido")))
-    }
+//    @Test
+//    fun login_withValidCredentials_showsSuccessMessage() {
+//        // Arrange
+//        onView(withId(R.id.email_edit_text)).perform(replaceText("morador@teste.com"))
+//        onView(withId(R.id.password_edit_text)).perform(replaceText("123"))
+//
+//        // Act
+//        onView(withId(R.id.login_button)).perform(click())
+//
+//        // Assert
+//        onView(withId(R.id.status_text_view)).check(matches(withText("Login bem-sucedido")))
+//    }
 
     @Test
     fun login_withInvalidCredentials_showFailMessage() {
@@ -51,18 +52,18 @@ class LoginUITest {
 
     }
 
-    @Test
-    fun login_withEmptyCredentials_showsFailMessage() {
-        // Arrange
-        onView(withId(R.id.email_edit_text)).perform(replaceText(""))
-        onView(withId(R.id.password_edit_text)).perform(replaceText(""))
-
-        // Act
-        onView(withId(R.id.login_button)).perform(click())
-
-        // Assert
-        onView(withId(R.id.status_text_view)).check(matches(withText("Credenciais inválidas")))
-    }
+//    @Test
+//    fun login_withEmptyCredentials_showsFailMessage() {
+//        // Arrange
+//        onView(withId(R.id.email_edit_text)).perform(replaceText(""))
+//        onView(withId(R.id.password_edit_text)).perform(replaceText(""))
+//
+//        // Act
+//        onView(withId(R.id.login_button)).perform(click())
+//
+//        // Assert
+//        onView(withId(R.id.status_text_view)).check(matches(withText("Credenciais inválidas")))
+//    }
 
     @Test
     fun login_withValidCredentials_shouldNavigateToDashboard() {
@@ -79,5 +80,29 @@ class LoginUITest {
         intended(hasComponent(DashboardActivity::class.java.name))
 
         Intents.release()
+    }
+
+    @Test
+    fun loginButton_shouldBeDisabled_whenFieldsAreEmpty() {
+        // Assert
+        onView(withId(R.id.login_button))
+            .check(matches(not(isEnabled())))
+    }
+
+    @Test
+    fun loginButton_shouldBeEnabled_whenBothFieldsAreFilled() {
+        // 1. Arrange & Act
+        onView(withId(R.id.email_edit_text)).perform(replaceText("a"))
+
+        // Assert
+        onView(withId(R.id.login_button))
+            .check(matches(not(isEnabled())))
+
+        // 2. Arrange & Act
+        onView(withId(R.id.password_edit_text)).perform(replaceText("b"))
+
+        // Assert
+        onView(withId(R.id.login_button))
+            .check(matches(isEnabled()))
     }
 }

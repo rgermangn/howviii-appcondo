@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalhes da Reserva"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- TextView ONDE O ID SERÁ EXIBIDO PARA O TESTE DATA-T5 -->
+    <TextView
+        android:id="@+id/area_id_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="ID da Área: [Carregando...]"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Placeholder para o calendário futuro -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#EEE"
+        android:layout_marginTop="32dp"/>
+
+    <!-- NOVO: Elementos para Seleção de Data (INSERIDOS PARA O DATA-T6) -->
+
+    <!-- Rótulo da Data -->
+    <TextView
+        android:id="@+id/date_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data Selecionada:"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
+
+    <!-- TextView que será atualizado com a data (ONDE O TESTE DATA-T6 FAZ O ASSERT) -->
+    <TextView
+        android:id="@+id/selected_date_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nenhuma data escolhida"
+        android:textSize="18sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Botão que dispara o seletor de data (O QUE O TESTE DATA-T6 CLICA) -->
+    <Button
+        android:id="@+id/select_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecionar Data"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Botão de Ação -->
+    <Button
+        android:id="@+id/check_availability_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verificar Disponibilidade"
+        android:enabled="false"/>
+
+    <TextView
+        android:id="@+id/availability_status_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:text=""/>
+
+
+</LinearLayout>

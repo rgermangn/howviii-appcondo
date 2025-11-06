@@ -3,28 +3,28 @@ package com.rggn.appcondominio.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.rggn.appcondominio.data.CommonArea
 import com.rggn.appcondominio.data.DataService
-import com.rggn.appcondominio.data.Resident
 
 class DashboardViewModel(
     private val dataService: DataService = DataService()
 ) : ViewModel() {
 
-    // 1. LiveData: Estado que será observado pela Activity (O teste procura por esta propriedade)
-    private val _residents = MutableLiveData<List<Resident>>()
-    val residents: LiveData<List<Resident>> = _residents
+    // 1. LiveData: Expondo a lista de ÁREAS COMUNS
+    private val _areas = MutableLiveData<List<CommonArea>>()
+    val areas: LiveData<List<CommonArea>> = _areas // Variável pública que a Activity observa
 
-    // 2. Função de Carregamento (O teste procura por este método)
-    fun loadResidents() {
-        // Simplesmente obtém os dados mockados do serviço
-        val residentList = dataService.getResidents()
+    // 2. Função de Carregamento
+    fun loadAreas() {
+        // Simplesmente obtém os dados mockados do serviço (CommonArea)
+        val areaList = dataService.getCommonAreas()
 
-        // Atualiza o LiveData, que notificará a UI
-        _residents.value = residentList
+        // Atualiza o LiveData
+        _areas.value = areaList
     }
 
-    // Opcional, mas útil: Carregar dados assim que o ViewModel é criado
+    // Carrega dados assim que o ViewModel é criado
     init {
-        loadResidents()
+        loadAreas()
     }
 }

@@ -1,8 +1,8 @@
 package com.rggn.appcondominio.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.rggn.appcondominio.data.CommonArea
 import com.rggn.appcondominio.data.DataService
-import com.rggn.appcondominio.data.Resident
 import org.junit.Rule
 import org.junit.Test
 import org.junit.Before
@@ -14,48 +14,42 @@ import org.junit.Assert.assertEquals
 
 class DashboardViewModelTest {
 
-    // Regra necessária para LiveData, pois o teste roda fora da thread principal do Android
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private lateinit var mockDataService: DataService
     private lateinit var viewModel: DashboardViewModel
 
-    // Dados simulados
-    private val residentList = listOf(
-        Resident(id = 10, name = "Carlos", unit = "202"),
-        Resident(id = 20, name = "Ana", unit = "305")
+    private val areaList = listOf(
+        CommonArea(id = 10, name = "Salão de Festas", capacity = 40),
+        CommonArea(id = 20, name = "Churrasqueira Gourmet", capacity = 20)
     )
 
     @Before
     fun setup() {
-        // Inicializa o mock do DataService
         mockDataService = mock(DataService::class.java)
 
-        // Configura o mock: QUANDO o getResidents for chamado, RETORNE a nossa lista simulada
-        `when`(mockDataService.getResidents()).thenReturn(residentList)
+        // NOVO: Configura o mock para getCommonAreas()
+        `when`(mockDataService.getCommonAreas()).thenReturn(areaList)
 
         // Inicializa o View Model com o mock
-        // O erro 'Unresolved reference: residents' aparecerá AQUI
         viewModel = DashboardViewModel(mockDataService)
     }
 
     @Test
-    fun loadResidents_deveChamarDataServiceEExporResultado() {
+    fun loadAreas_deveChamarDataServiceEExporResultado() {
         // Arrange
-        // (Já feito no setup)
+        // (O ViewModel já chamou loadAreas() no seu bloco init{})
 
-        // Act
-//        viewModel.loadResidents()
+        // Act (Não precisamos chamar novamente, pois o init() já fez)
 
-        // Assert: Verifica se o serviço foi chamado
-        verify(mockDataService).getResidents()
+        // Assert: Verifica se o serviço correto foi chamado APENAS UMA VEZ
+        verify(mockDataService).getCommonAreas()
 
-        // Assert: Verifica se o LiveData foi atualizado com os dados
-        // O erro 'Unresolved reference: residents' aparecerá AQUI
-        val residentsLiveData = viewModel.residents.value
-        assertNotNull(residentsLiveData)
-        assertEquals(2, residentsLiveData?.size)
-        assertEquals("Carlos", residentsLiveData?.get(0)?.name)
+        // Assert: Verifica se o LiveData 'areas' foi atualizado
+        val areasLiveData = viewModel.areas.value
+        assertNotNull(areasLiveData)
+        assertEquals(2, areasLiveData?.size)
+        assertEquals("Salão de Festas", areasLiveData?.get(0)?.name)
     }
 }

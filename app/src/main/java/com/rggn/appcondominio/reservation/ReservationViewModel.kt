@@ -12,16 +12,14 @@ import java.util.Locale
 
 // Classe que contém a lógica de negócios para a tela de reserva
 class ReservationViewModel(private val dataService: DataService) : ViewModel() {
-    // CAL-T2.2 LiveData ATUALIZADO: Agora expõe o objeto AvailabilityStatus (resolve erro de referência)
-    private val _availabilityStatus = MutableLiveData<AvailabilityStatus>()
-    val availabilityStatus: LiveData<AvailabilityStatus> = _availabilityStatus
-    // LiveData para expor o status de disponibilidade para a Activity
-    private val _isAvailable = MutableLiveData<Boolean>()
-    val isAvailable: LiveData<Boolean> = _isAvailable
 
-    // LiveData para expor a data selecionada para a Activity
-    private val _selectedDate = MutableLiveData<Calendar>()
-    val selectedDate: LiveData<Calendar> = _selectedDate
+    // LiveData para expor o status DETALHADO de disponibilidade (CAL-D1)
+    private val _availabilityStatus = MutableLiveData<AvailabilityStatus?>()
+    val availabilityStatus: LiveData<AvailabilityStatus?> = _availabilityStatus
+
+    // LiveData para expor a lista de DATAS RESERVADAS (NOVO - CAL-T2.3)
+    private val _reservedDates = MutableLiveData<List<String>>()
+    val reservedDates: LiveData<List<String>> = _reservedDates
 
     // LiveData para expor o ID da Área Comum
     private val _areaId = MutableLiveData<Int>()
@@ -30,6 +28,8 @@ class ReservationViewModel(private val dataService: DataService) : ViewModel() {
     // Inicializa o ID (Chamado pela Activity quando o Intent chega)
     fun setAreaId(id: Int) {
         _areaId.value = id
+        // Assim que o ID é setado, já buscamos a lista de datas reservadas
+        fetchReservedDates(id)
     }
 
     // Método para formatar a data para o formato esperado pelo DataService
@@ -39,11 +39,20 @@ class ReservationViewModel(private val dataService: DataService) : ViewModel() {
         return dateFormat.format(calendar.time)
     }
 
-    // CAL T2.2 MÉTODO CORRIGIDO: Chama checkAvailability (resolve erro de referência)
+    // Lógica principal: Verifica a disponibilidade detalhada da área em uma data (CAL-D1)
     fun checkAvailability(areaId: Int, date: Calendar) {
         val dateString = formatDate(date)
+        // Em um projeto real, esta chamada seria assíncrona (com Coroutines/Flows)
         val status = dataService.checkAvailability(areaId, dateString)
+
         _availabilityStatus.value = status
+    }
+
+    // NOVO - Lógica para buscar as datas reservadas para a área (CAL-T2.3)
+    fun fetchReservedDates(areaId: Int) {
+        // Em um projeto real, esta chamada seria assíncrona
+        val dates = dataService.getReservedDates(areaId)
+        _reservedDates.value = dates
     }
 }
 

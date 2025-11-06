@@ -46,4 +46,16 @@ class DataService {
             else -> AvailabilityStatus(isAvailable = true)
         }
     }
+
+    // Refatorado em CAL-D2.3: Método para buscar todas as datas reservadas para uma área
+    fun getReservedDates(areaId: Int): List<String> {
+        return if (areaId == 10) {
+            // CORRIGIDO: Mocks para o Salão de Festas (ID 10) para corresponder ao CalendarActivityTest
+            listOf("01/12/2025", "02/12/2025", "03/12/2025")
+        } else {
+            // Mocks para outras áreas
+            listOf("01/01/2026")
+        }
+    }
+
 }

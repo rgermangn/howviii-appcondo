@@ -27,4 +27,81 @@
         android:background="#FFFFFF"
         android:layout_marginBottom="24dp"/>
 
+    <TextView
+        android:id="@+id/selected_date_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_marginBottom="32dp"
+        tools:text="Data Selecionada: 05/12/2025"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/availability_status_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status de Disponibilidade"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/availability_status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="8dp"
+        android:background="@android:color/holo_green_light"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:layout_marginBottom="24dp"
+        tools:text="DISPONÍVEL"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/resident_name_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reservado por:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/resident_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        tools:text="Maria Souza"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/resident_unit_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unidade:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/resident_unit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:visibility="gone"
+        tools:text="Apt 205"
+        tools:visibility="visible"/>
+
 </LinearLayout>

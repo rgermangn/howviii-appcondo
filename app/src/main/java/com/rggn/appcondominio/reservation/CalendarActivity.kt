@@ -1,31 +1,38 @@
 package com.rggn.appcondominio.reservation
 
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.CalendarView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.rggn.appcondominio.R
 import com.rggn.appcondominio.data.DataService
-import com.rggn.appcondominio.reservation.ReservationActivity.Companion.EXTRA_AREA_ID
-import com.rggn.appcondominio.reservation.ReservationActivity.Companion.EXTRA_DATE // Importação Necessária
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 class CalendarActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_AREA_ID = "extra_area_id"
+    }
 
     private val viewModel: ReservationViewModel by viewModels {
         ReservationViewModelFactory(DataService())
     }
 
-    private lateinit var reservedDatesTextView: TextView
     private lateinit var areaTitleTextView: TextView
     private lateinit var reservationCalendarView: CalendarView
+    private lateinit var selectedDateTextView: TextView
+    private lateinit var statusTextView: TextView
+    private lateinit var reservedByLabel: TextView
+    private lateinit var residentNameTextView: TextView
+    private lateinit var residentUnitTextView: TextView
+    private lateinit var availabilityStatusLabel: TextView
 
-    // Propriedade de classe para armazenar o ID lido da Intent
     private var currentAreaId: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,86 +41,68 @@ class CalendarActivity : AppCompatActivity() {
 
         areaTitleTextView = findViewById(R.id.area_title_text)
         reservationCalendarView = findViewById(R.id.reservation_calendar_view)
+        selectedDateTextView = findViewById(R.id.selected_date_text)
+        statusTextView = findViewById(R.id.availability_status_text)
+        reservedByLabel = findViewById(R.id.resident_name_label)
+        residentNameTextView = findViewById(R.id.resident_name_text)
+        residentUnitTextView = findViewById(R.id.resident_unit_text)
+        availabilityStatusLabel = findViewById(R.id.availability_status_label)
 
-        // 1. LÊ O EXTRA DA INTENT E SALVA NA PROPRIEDADE
         currentAreaId = intent.getIntExtra(EXTRA_AREA_ID, -1)
 
         if (currentAreaId != -1) {
             viewModel.setAreaId(currentAreaId)
-            areaTitleTextView.text = "Calendário de Reservas (Área ID: $currentAreaId)"
+            val areaName = DataService().getAreaNameById(currentAreaId)
+            areaTitleTextView.text = areaName
         } else {
             areaTitleTextView.text = "Erro: ID da Área não encontrado."
         }
-
-        // Dentro da função onCreate() ou setupViews() da CalendarActivity
-        val calendarView = findViewById<CalendarView>(R.id.reservation_calendar_view)
-
-        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            // Lógica para formatar a data e chamar a próxima Activity
-            // ...
-            // Exemplo de como formatar a data para o Intent
-            val date = Calendar.getInstance().apply { set(year, month, dayOfMonth) }
-            val dateString = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(date.time)
-
-            // Lógica de navegação:
-            val intent = Intent(this, ReservationActivity::class.java).apply {
-                putExtra(ReservationActivity.EXTRA_AREA_ID, currentAreaId) // areaId é a variável que você passou no Intent anterior
-                putExtra(ReservationActivity.EXTRA_DATE, dateString)
-            }
-            startActivity(intent)
-        }
-
 
         setupListeners()
         observeViewModel()
     }
 
     private fun setupListeners() {
-        // CAL-T3: Listener de clique no CalendarView
-        reservationCalendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            // 1. Converte os parâmetros do CalendarView para um objeto Calendar
+        reservationCalendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedCalendar = Calendar.getInstance().apply {
-                // NOTA: O CalendarView usa month com base 0 (0=Janeiro, 11=Dezembro)
                 set(year, month, dayOfMonth)
             }
-
-            // 2. Chama a função de navegação, usando a propriedade de classe
-            // CORREÇÃO APLICADA AQUI: O compilador agora sabe que currentAreaId é uma propriedade.
-            navigateToReservationActivity(currentAreaId, selectedCalendar)
+            val dateString = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(selectedCalendar.time)
+            selectedDateTextView.text = "Data Selecionada: $dateString"
+            viewModel.checkAvailability(currentAreaId, selectedCalendar)
         }
     }
-
-    // Função auxiliar para formatar a data, usada na Intent
-    private fun formatDate(calendar: Calendar): String {
-        // Formato dd/MM/yyyy, crucial para a Intent e o DataService
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        return dateFormat.format(calendar.time)
-    }
-
-    // CAL-T3 IMPLEMENTAÇÃO: Envia a Intent com a data e o ID
-    private fun navigateToReservationActivity(areaId: Int, date: Calendar) {
-        // 1. Formata a data para ser enviada como String (formato do DataService)
-        val dateString = formatDate(date)
-
-        // 2. Cria e dispara a Intent
-        val intent = Intent(this, ReservationActivity::class.java).apply {
-            putExtra(EXTRA_AREA_ID, areaId)
-            putExtra(EXTRA_DATE, dateString) // Adiciona a data (alvo do teste)
-        }
-        startActivity(intent)
-    }
-
 
     private fun observeViewModel() {
-        viewModel.reservedDates.observe(this) { dates ->
-            val datesListString = if (dates.isNotEmpty()) {
-                dates.joinToString(separator = "\n")
-            } else {
-                "Nenhuma data reservada encontrada."
-            }
-            reservedDatesTextView.text = datesListString
-        }
+        viewModel.availabilityStatus.observe(this, Observer { status ->
+            updateAvailabilityStatus(status.isAvailable, status.residentName, status.residentUnit)
+        })
+    }
 
-        // FUTURO: Aqui entrará a lógica para customizar a visualização das datas reservadas
+    private fun updateAvailabilityStatus(isAvailable: Boolean, residentName: String?, residentUnit: String?) {
+        selectedDateTextView.visibility = View.VISIBLE
+        availabilityStatusLabel.visibility = View.VISIBLE
+        statusTextView.visibility = View.VISIBLE
+
+        if (isAvailable) {
+            statusTextView.text = "DISPONÍVEL"
+            statusTextView.setBackgroundColor(Color.parseColor("#4CAF50")) // Verde
+            statusTextView.setTextColor(Color.WHITE)
+
+            reservedByLabel.visibility = View.GONE
+            residentNameTextView.visibility = View.GONE
+            residentUnitTextView.visibility = View.GONE
+        } else {
+            statusTextView.text = "RESERVADO"
+            statusTextView.setBackgroundColor(Color.parseColor("#FF9800")) // Laranja/Amarelo
+            statusTextView.setTextColor(Color.BLACK)
+
+            reservedByLabel.visibility = View.VISIBLE
+            residentNameTextView.visibility = View.VISIBLE
+            residentUnitTextView.visibility = View.VISIBLE
+
+            residentNameTextView.text = residentName ?: "Não Informado"
+            residentUnitTextView.text = "Unidade: ${residentUnit ?: "-"}"
+        }
     }
 }

@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- Cores para Status de Disponibilidade -->
+    <color name="green_available">#A5D6A7</color>
+    <color name="red_reserved">#EF9A9A</color>
 </resources>

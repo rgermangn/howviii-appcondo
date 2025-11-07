@@ -32,7 +32,6 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
 
-        reservedDatesTextView = findViewById(R.id.reserved_dates_list_text)
         areaTitleTextView = findViewById(R.id.area_title_text)
         reservationCalendarView = findViewById(R.id.reservation_calendar_view)
 

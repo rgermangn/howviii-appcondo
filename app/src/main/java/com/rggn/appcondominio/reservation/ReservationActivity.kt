@@ -38,12 +38,12 @@ class ReservationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_reservation)
 
         // Inicializa as Views
-        areaIdTextView = findViewById(R.id.area_id_text_view)
-        selectedDateTextView = findViewById(R.id.selected_date_text_view)
-        statusTextView = findViewById(R.id.availability_status_text_view)
-        reservedByLabel = findViewById(R.id.reserved_by_label)
-        residentNameTextView = findViewById(R.id.resident_name_text_view)
-        residentUnitTextView = findViewById(R.id.resident_unit_text_view)
+        areaIdTextView = findViewById(R.id.area_title_text_reservation)
+        selectedDateTextView = findViewById(R.id.selected_date_text)
+        statusTextView = findViewById(R.id.availability_status_text)
+        reservedByLabel = findViewById(R.id.resident_unit_label)
+        residentNameTextView = findViewById(R.id.resident_name_text)
+        residentUnitTextView = findViewById(R.id.resident_unit_text)
 
         // 1. Processar Intent (ID da Área e Data)
         val areaId = intent.getIntExtra(EXTRA_AREA_ID, -1)

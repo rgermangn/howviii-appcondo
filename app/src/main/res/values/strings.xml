@@ -1,10 +1,12 @@
 <resources>
-    <string name="app_name">AppCondominio</string>
+    <string name="app_name">AgendaCondominio</string>
     <string name="email">Email</string>
     <string name="password">Senha</string>
     <string name="login">Entrar</string>
     <string name="bem_vindo_dashboard">Bem-vindo à Dashboard!</string>
     <string name="invalid_credentials">Credenciais inválidas</string>
+    <string name="area_selection_title">Selecione a Área Comum</string>
+    <string name="calendar_title">Disponibilidade de Reserva</string>
     <!-- Strings da tela de Áreas Comuns -->
     <string name="area_name_label">Área Comum</string>
     <string name="area_capacity_label">Capacidade: %d pessoas</string>
@@ -16,5 +18,5 @@
     <string name="reserved_by_label">Reservado por:</string>
     <string name="unit_display">Unidade: %s</string>
     <string name="calendar_reserved_dates">Datas Reservadas:</string>
-
+    <string name="selected_date_format">Data Selecionada: %s</string>
 </resources>

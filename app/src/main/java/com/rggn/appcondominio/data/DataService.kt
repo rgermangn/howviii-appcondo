@@ -18,11 +18,7 @@ class DataService {
             // O teste DATA-T2 espera 2 itens com esses nomes
         )
     }
-
     // DATA-T7/CAL-T2
-    //Método para verificar a disponibilidade de uma área em uma data
-    // Retorna true se estiver disponível, false se estiver reservado.
-    // Usaremos mocks para forçar cenários no teste.
     fun isAreaAvailable(areaId: Int, date: String): Boolean {
         // Implementação Mock: Assume-se que a área 10 (Salão de Festas) está sempre indisponível
         // na data "05/12/2025" (a mesma data mockada no teste de UI)
@@ -51,7 +47,7 @@ class DataService {
     fun getReservedDates(areaId: Int): List<String> {
         return if (areaId == 10) {
             // CORRIGIDO: Mocks para o Salão de Festas (ID 10) para corresponder ao CalendarActivityTest
-            listOf("01/12/2025", "02/12/2025", "03/12/2025")
+            listOf("01/12/2025", "02/12/2025", "03/12/2025", "05/12/2025")
         } else {
             // Mocks para outras áreas
             listOf("01/01/2026")

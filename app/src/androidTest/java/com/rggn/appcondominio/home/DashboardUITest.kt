@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.rggn.appcondominio.reservation.CalendarActivity
 import com.rggn.appcondominio.reservation.ReservationActivity // Importa a nova Activity
 import org.hamcrest.Matchers.allOf
 import org.junit.After
@@ -56,8 +57,8 @@ class DashboardUITest {
         // Assert: Verifica se uma Intent foi disparada
         intended(
             allOf(
-                // 1. Verifica se a Intent é para a ReservationActivity
-                hasComponent(ReservationActivity::class.java.name),
+                // 1. Verifica se a Intent é para a CalendarActivity
+                hasComponent(CalendarActivity::class.java.name),
                 // 2. Verifica se a Intent carrega o ID correto da área (10)
                 hasExtra(ReservationActivity.EXTRA_AREA_ID, expectedAreaId)
             )

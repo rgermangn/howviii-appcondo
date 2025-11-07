@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center_horizontal">
@@ -10,73 +10,99 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Detalhes da Reserva"
+        android:text="Detalhes de Disponibilidade"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
-    <!-- TextView ONDE O ID SERÁ EXIBIDO PARA O TESTE DATA-T5 -->
+    <!-- ID DA ÁREA -->
     <TextView
         android:id="@+id/area_id_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:text="ID da Área: [Carregando...]"
+        android:textStyle="italic"
         android:textColor="@android:color/darker_gray"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="16dp"
+        tools:text="ID da Área: 10"/>
 
-    <!-- Placeholder para o calendário futuro -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="#EEE"
-        android:layout_marginTop="32dp"/>
-
-    <!-- NOVO: Elementos para Seleção de Data (INSERIDOS PARA O DATA-T6) -->
-
-    <!-- Rótulo da Data -->
+    <!-- DATA SELECIONADA -->
     <TextView
-        android:id="@+id/date_label"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Data Selecionada:"
+        android:text="Data Consultada:"
         android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
 
-    <!-- TextView que será atualizado com a data (ONDE O TESTE DATA-T6 FAZ O ASSERT) -->
     <TextView
         android:id="@+id/selected_date_text_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nenhuma data escolhida"
+        android:textSize="22sp"
+        android:textStyle="normal"
+        android:layout_marginBottom="24dp"
+        tools:text="05/12/2025"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- STATUS DE DISPONIBILIDADE -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status Atual:"
         android:textSize="18sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- Botão que dispara o seletor de data (O QUE O TESTE DATA-T6 CLICA) -->
-    <Button
-        android:id="@+id/select_date_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Selecionar Data"
-        android:layout_marginBottom="32dp"/>
-
-    <!-- Botão de Ação -->
-    <Button
-        android:id="@+id/check_availability_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Verificar Disponibilidade"
-        android:enabled="false"/>
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
 
     <TextView
         android:id="@+id/availability_status_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="32sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:text=""/>
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="8dp"
+        android:textColor="@android:color/black"
+        android:background="#DDDDDD"
+        tools:text="DISPONÍVEL"
+        android:layout_marginBottom="32dp" />
+
+    <!-- NOVO: DETALHES DO RESERVANTE (Visível se RESERVADO) -->
+    <TextView
+        android:id="@+id/reserved_by_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reservado por:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/resident_name_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="João Silva"/>
+
+    <TextView
+        android:id="@+id/resident_unit_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="4dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="Unidade: A-101"/>
 
 
 </LinearLayout>

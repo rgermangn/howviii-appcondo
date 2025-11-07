@@ -5,4 +5,16 @@
     <string name="login">Entrar</string>
     <string name="bem_vindo_dashboard">Bem-vindo à Dashboard!</string>
     <string name="invalid_credentials">Credenciais inválidas</string>
+    <!-- Strings da tela de Áreas Comuns -->
+    <string name="area_name_label">Área Comum</string>
+    <string name="area_capacity_label">Capacidade: %d pessoas</string>
+    <string name="open_calendar_button">Verificar Calendário</string>
+    <!-- Strings da tela de Reserva (ReservationActivity) -->
+    <string name="area_id_display">ID da Área: %d</string>
+    <string name="date_label">Data Selecionada:</string>
+    <string name="availability_label">Status de Disponibilidade:</string>
+    <string name="reserved_by_label">Reservado por:</string>
+    <string name="unit_display">Unidade: %s</string>
+    <string name="calendar_reserved_dates">Datas Reservadas:</string>
+
 </resources>

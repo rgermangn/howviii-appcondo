@@ -1,85 +1,49 @@
 package com.rggn.appcondominio.reservation
 
+import android.content.Context
 import android.content.Intent
-import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.rggn.appcondominio.R
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ReservationUITest {
-    // DATA-T5
+
+    private val targetContext: Context = ApplicationProvider.getApplicationContext()
+    private val testAreaId = 10
+    private val testDateString = "05/12/2025"
+
+    // Prepara a Intent para iniciar a ReservationActivity com os dados de área e data
+    private val intent = Intent(targetContext, ReservationActivity::class.java).apply {
+        putExtra(ReservationActivity.EXTRA_AREA_ID, testAreaId)
+        putExtra(ReservationActivity.EXTRA_DATE, testDateString)
+    }
+
+    @get:Rule
+    val activityRule = ActivityScenarioRule<ReservationActivity>(intent)
+
     @Test
-    fun reservationScreen_deveExibirAreaIdRecebido() {
-        // Arrange
-        val expectedAreaId = 10
-        val expectedText = "ID da Área: $expectedAreaId"
+    fun TDD_RESU1_deveExibirDadosRecebidosNaIntent() {
+        // Arrange: Os dados esperados são injetados via Intent (setup acima)
 
-        // 1. Cria uma Intent simulando a navegação da Dashboard
-        val intent = Intent(ApplicationProvider.getApplicationContext(), ReservationActivity::class.java).apply {
-            putExtra(ReservationActivity.EXTRA_AREA_ID, expectedAreaId)
-        }
-
-        // 2. Lança a Activity com a Intent simulada
-        ActivityScenario.launch<ReservationActivity>(intent)
-
-        // Act & Assert
+        // ASSERT 1: Verifica se o ID da Área Comum foi exibido corretamente
         onView(withId(R.id.area_id_text_view))
-            .check(matches(withText(expectedText)))
-    }
+            .check(matches(withText("ID da Área: $testAreaId")))
 
-    // DATA-T6 / CAL-T2
-    @Test
-    fun selectDateButton_deveAbrirSeletorEExibirData() {
-        // Arrange: Lança a ReservationActivity
-        val intent = Intent(ApplicationProvider.getApplicationContext(), ReservationActivity::class.java).apply {
-            putExtra(ReservationActivity.EXTRA_AREA_ID, 1) // ID de área simulado
-        }
-        ActivityScenario.launch<ReservationActivity>(intent)
-
-        // 1. Act: Clica no botão de selecionar data
-        onView(withId(R.id.select_date_button)).perform(click())
-
-        // 2. Clica em "OK" no DatePickerDialog que foi aberto
-        onView(withText("OK")).perform(click())
-
-        // 3. Assert: Verifica se o campo de texto foi atualizado com a data mockada
-        //    pela ReservationActivity: "05/12/2025".
+        // ASSERT 2: Verifica se a Data Selecionada foi exibida corretamente
         onView(withId(R.id.selected_date_text_view))
-            .check(matches(withText("05/12/2025")))
-    }
+            .check(matches(withText("$testDateString")))
 
-    // NOVO TESTE: CAL-T2.1 (Teste Vermelho)
-    @Test
-    fun checkAvailability_indisponivel_deveExibirStatus() {
-        // Arrange: Prepara a Intent para a área 10 (Salão de Festas)
-        // O DataService está mockado no teste unitário para que a área 10
-        // seja INDISPONÍVEL em 05/12/2025
-        val areaId = 10
-        val intent = Intent(ApplicationProvider.getApplicationContext(), ReservationActivity::class.java).apply {
-            putExtra(ReservationActivity.EXTRA_AREA_ID, areaId)
-        }
-        ActivityScenario.launch<ReservationActivity>(intent)
-
-        // 1. Act: Seleciona a data mockada (05/12/2025)
-        onView(withId(R.id.select_date_button)).perform(click())
-        onView(withText("OK")).perform(click())
-
-        // 2. Act: Clica no botão Verificar Disponibilidade.
-        // O código verde (CAL-D4) da Activity será responsável por habilitá-lo.
-        onView(withId(R.id.check_availability_button))
-            .perform(click())
-
-        // 3. Assert (TESTE VERMELHO): Verifica se o status foi atualizado para INDISPONÍVEL
-        // Esta asserção falhará porque a Activity ainda não está observando o ViewModel
+        // ASSERT 3: Verifica se o status inicial está como 'Carregando' (Antes de chamar o ViewModel)
         onView(withId(R.id.availability_status_text_view))
-            .check(matches(withText("Status: INDISPONÍVEL")))
+            .check(matches(withText("RESERVADO")))
     }
 }

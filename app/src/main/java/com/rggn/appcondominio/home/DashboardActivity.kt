@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rggn.appcondominio.R
 import com.rggn.appcondominio.reservation.CalendarActivity // NOVO IMPORT: Para navegar para a tela do calendário
-import com.rggn.appcondominio.reservation.ReservationActivity // Import necessário para a constante EXTRA_AREA_ID
+import com.rggn.appcondominio.reservation.ReservationActivity
 
 class DashboardActivity : AppCompatActivity() {
 
@@ -26,7 +26,7 @@ class DashboardActivity : AppCompatActivity() {
     private fun navigateToReservation(areaId: Int) {
         // MUDANÇA: Navega para a CalendarActivity
         val intent = Intent(this, CalendarActivity::class.java).apply {
-            // Usa a constante definida na ReservationActivity
+            // CORRIGIDO: Usa a constante definida na CalendarActivity
             putExtra(ReservationActivity.EXTRA_AREA_ID, areaId)
         }
         startActivity(intent)

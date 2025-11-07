@@ -10,64 +10,23 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-// Classe que contém a lógica de negócios para a tela de reserva
 class ReservationViewModel(private val dataService: DataService) : ViewModel() {
 
-    // CAL-T4 NOVO LiveData: Expõe o status COMPLETO de disponibilidade para a Activity
     private val _availabilityStatus = MutableLiveData<AvailabilityStatus>()
     val availabilityStatus: LiveData<AvailabilityStatus> = _availabilityStatus
 
-    // LiveData para expor a data selecionada para a Activity
-    private val _selectedDate = MutableLiveData<Calendar>()
-    val selectedDate: LiveData<Calendar> = _selectedDate
-
-    // LiveData para expor o ID da Área Comum
-    private val _areaId = MutableLiveData<Int>()
-    val areaId: LiveData<Int> = _areaId
-
-    // LiveData para expor as datas reservadas (usado em CalendarActivity)
-    private val _reservedDates = MutableLiveData<List<String>>()
-    val reservedDates: LiveData<List<String>> = _reservedDates
-
-    // Inicializa o ID (Chamado pela Activity quando o Intent chega)
-    fun setAreaId(id: Int) {
-        _areaId.value = id
+    fun checkAvailability(areaId: Int, date: Calendar) {
+        val dateString = formatDate(date)
+        val status = dataService.checkAvailability(areaId, dateString)
+        _availabilityStatus.value = status
     }
 
-    // Carrega as datas reservadas para a área
-    private fun loadReservedDates(areaId: Int) {
-        val dates = dataService.getReservedDatesForArea(areaId)
-        _reservedDates.value = dates
-    }
-
-    // Define a data selecionada. Usado no CalendarActivity.
-    fun setSelectedDate(calendar: Calendar) {
-        _selectedDate.value = calendar
-    }
-
-    // Método para formatar a data para o formato esperado pelo DataService
     private fun formatDate(calendar: Calendar): String {
-        // Formato dd/MM/yyyy esperado pelo DataService (que está mockado)
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
-
-    // Lógica principal: Verifica a disponibilidade da área em uma data
-    // CAL-T4 IMPLEMENTAÇÃO: Agora retorna AvailabilityStatus em vez de Boolean
-    fun checkAvailability(areaId: Int, date: Calendar) {
-        // 1. Formata a data para a API
-        val dateString = formatDate(date)
-
-        // 2. Chama o DataService
-        // Em um projeto real, esta chamada seria assíncrona (com Coroutines/Flows)
-        val status = dataService.checkAvailability(areaId, dateString)
-
-        // 3. Atualiza o LiveData para notificar a View
-        _availabilityStatus.value = status
-    }
 }
 
-// Classe Factory necessária para injetar o DataService no ViewModel
 class ReservationViewModelFactory(private val dataService: DataService) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ReservationViewModel::class.java)) {

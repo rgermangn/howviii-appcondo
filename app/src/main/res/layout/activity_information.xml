@@ -40,9 +40,9 @@
             android:id="@+id/text_regras_gerais"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. As reservas devem ser feitas com no mínimo 48 horas de antecedência.
-2. O horário máximo de uso é até as 22h00, respeitando o sossego dos demais moradores.
-3. A limpeza básica do espaço é responsabilidade do morador reservante.
+            android:text="1. As reservas devem ser feitas com no mínimo 48 horas de antecedência.\n
+2. O horário máximo de uso é até as 22h00, respeitando o sossego dos demais moradores.\n
+3. A limpeza básica do espaço é responsabilidade do morador reservante.\n
 4. O número máximo de convidados não deve exceder a capacidade da área."
             android:textSize="16sp"
             android:padding="12dp"
@@ -65,9 +65,9 @@
             android:id="@+id/text_custos_taxas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="• Salão de Festas: R$ 150,00 (Taxa de Limpeza Obrigatória).
-• Churrasqueira Gourmet: R$ 50,00 (Opcional, se precisar de limpeza profunda).
-• Multa por cancelamento após 24h: 50% do valor da taxa.
+            android:text="• Salão de Festas: R$ 150,00 (Taxa de Limpeza Obrigatória).\n
+• Churrasqueira Gourmet: R$ 50,00 (Opcional, se precisar de limpeza profunda).\n
+• Multa por cancelamento após 24h: 50% do valor da taxa.\n
 • Caução para danos: R$ 300,00 (Será devolvido após inspeção)."
             android:textSize="16sp"
             android:padding="12dp"

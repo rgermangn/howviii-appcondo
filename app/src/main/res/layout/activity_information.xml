@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout da Activity de Informações. Tarefa: INFO-D1 -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:padding="16dp"
+    tools:context=".info.InformationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título Principal da Tela -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Informações das Áreas Comuns"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:paddingBottom="16dp"
+            android:gravity="center_horizontal"/>
+
+        <!-- SEÇÃO 1: REGRAS DE USO (INFO-D1) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regras Gerais de Uso"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#005662"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/text_regras_gerais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. As reservas devem ser feitas com no mínimo 48 horas de antecedência.
+2. O horário máximo de uso é até as 22h00, respeitando o sossego dos demais moradores.
+3. A limpeza básica do espaço é responsabilidade do morador reservante.
+4. O número máximo de convidados não deve exceder a capacidade da área."
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_background_white"
+            android:elevation="2dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- SEÇÃO 2: CUSTOS E TAXAS (INFO-D1) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custos e Taxas de Reserva"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#005662"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/text_custos_taxas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Salão de Festas: R$ 150,00 (Taxa de Limpeza Obrigatória).
+• Churrasqueira Gourmet: R$ 50,00 (Opcional, se precisar de limpeza profunda).
+• Multa por cancelamento após 24h: 50% do valor da taxa.
+• Caução para danos: R$ 300,00 (Será devolvido após inspeção)."
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_background_white"
+            android:elevation="2dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- SEÇÃO 3: ITENS E EQUIPAMENTOS -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Itens e Equipamentos Disponíveis"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#005662"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/text_itens_equipamentos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salão de Festas:\n• 40 cadeiras e 10 mesas redondas.\n• Cozinha industrial com fogão e geladeira.\n• Sistema de som ambiente (conexão Bluetooth).\n\nChurrasqueira Gourmet:\n• Churrasqueira a gás (2 bocas) e elétrica (1).\n• Utensílios de churrasco (espetos e grelhas).\n• Louça completa para 20 pessoas (pratos, talheres, copos).\n\nObservação: Qualquer item danificado ou perdido será cobrado do morador responsável pela reserva."
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_background_white"
+            android:elevation="2dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+</ScrollView>

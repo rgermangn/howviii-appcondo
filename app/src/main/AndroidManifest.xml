@@ -30,6 +30,7 @@
             android:exported="false"
             android:theme="@style/Theme.AppCondominio" />
         <activity android:name="com.rggn.appcondominio.reservation.CalendarActivity" />
+        <activity android:name="com.rggn.appcondominio.info.InformationActivity" />
     </application>
 
 </manifest>

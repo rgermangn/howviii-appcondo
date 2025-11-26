@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F5F5F5"
+    tools:context=".home.DashboardActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/areas_comuns"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="#00838F"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:gravity="center_vertical"/>
 
     <Button
         android:id="@+id/btn_information"
@@ -12,14 +27,21 @@
         android:text="Informações" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Áreas Comuns Disponíveis"
-        android:textSize="24sp"
-        android:padding="16dp"/>
+        android:text="Escolha a área para ver o calendário de reservas:"
+        android:textSize="16sp"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:textColor="#616161"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/areas_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingHorizontal="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"/>
+
 </LinearLayout>

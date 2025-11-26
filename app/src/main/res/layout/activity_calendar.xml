@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#f5f5f5"
+    android:background="#F5F5F5"
     tools:context=".reservation.CalendarActivity">
 
     <TextView
@@ -16,7 +16,7 @@
         android:text="Calendário de Reservas"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="#00838F"
         android:paddingBottom="16dp"
         android:gravity="center_horizontal"/>
 
@@ -24,70 +24,89 @@
         android:id="@+id/reservation_calendar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:layout_marginBottom="24dp"/>
-
-    <TextView
-        android:id="@+id/selected_date_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_marginBottom="32dp"
-        tools:text="Data Selecionada: 05/12/2025" />
-
-    <TextView
-        android:id="@+id/availability_status_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Status de Disponibilidade"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="4dp"/>
-
-    <TextView
-        android:id="@+id/availability_status_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="8dp"
-        android:background="@android:color/holo_green_light"
-        android:textColor="@android:color/black"
-        android:textAlignment="center"
+        android:background="@drawable/card_background"
         android:layout_marginBottom="24dp"
-        tools:text="DISPONÍVEL" />
+        android:elevation="2dp"/>
 
-    <TextView
-        android:id="@+id/resident_name_label"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Reservado por:"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:orientation="vertical"
+        android:background="@drawable/card_background"
+        android:padding="16dp"
+        android:elevation="2dp">
 
-    <TextView
-        android:id="@+id/resident_name_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginBottom="16dp"
-        tools:text="João Silva"/>
+        <TextView
+            android:id="@+id/selected_date_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:textStyle="italic"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            tools:text="Status para: 05/12/2025"/>
 
-    <TextView
-        android:id="@+id/resident_unit_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Unidade:"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/availability_status_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status da Data"
+            android:textSize="14sp"
+            android:textColor="#616161"
+            android:textAlignment="center"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
 
-    <TextView
-        android:id="@+id/resident_unit_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="A-101"/>
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:paddingVertical="12dp"
+            android:layout_marginHorizontal="32dp"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            tools:background="#4CAF50"
+            tools:text="DISPONÍVEL" />
 
+        <TextView
+            android:id="@+id/reserved_by_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reservado por:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:id="@+id/resident_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:textColor="#616161"
+            tools:text=" "/>
+
+        <TextView
+            android:id="@+id/resident_unit_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidade:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#333333"/>
+
+        <TextView
+            android:id="@+id/resident_unit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#616161"
+            tools:text=" "/>
+
+    </LinearLayout>
 </LinearLayout>

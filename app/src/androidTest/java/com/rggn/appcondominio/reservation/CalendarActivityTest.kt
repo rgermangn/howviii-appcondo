@@ -45,8 +45,8 @@ class CalendarActivityTest {
 
         // Assert
         onView(withId(R.id.selected_date_text)).check(matches(withText("Data Selecionada: 10/12/2025")))
-        onView(withId(R.id.availability_status_text)).check(matches(withText("DISPONÍVEL")))
-        onView(withId(R.id.resident_name_label)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.status_text)).check(matches(withText("DISPONÍVEL")))
+        onView(withId(R.id.reserved_by_label)).check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
 
     @Test
@@ -60,9 +60,9 @@ class CalendarActivityTest {
 
         // Assert
         onView(withId(R.id.selected_date_text)).check(matches(withText("Data Selecionada: 05/12/2025")))
-        onView(withId(R.id.availability_status_text)).check(matches(withText("RESERVADO")))
+        onView(withId(R.id.status_text)).check(matches(withText("RESERVADO")))
 
-        onView(withId(R.id.resident_name_label)).check(matches(isDisplayed()))
+        onView(withId(R.id.reserved_by_label)).check(matches(isDisplayed()))
         onView(withId(R.id.resident_name_text)).check(matches(isDisplayed()))
         onView(withId(R.id.resident_unit_label)).check(matches(isDisplayed()))
         onView(withId(R.id.resident_unit_text)).check(matches(isDisplayed()))

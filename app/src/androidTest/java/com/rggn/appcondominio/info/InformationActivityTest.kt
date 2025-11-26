@@ -44,7 +44,7 @@ class InformationActivityTest {
             .check(matches(withSubstring("R$ 150,00"))) // Verifica parte do conteúdo
 
         // 6. Verificar se o Placeholder de Itens e Equipamentos (INFO-D2) está visível
-        onView(withText("Itens e Equipamentos Disponíveis (A ser detalhado em INFO-D2)"))
+        onView(withText("Itens e Equipamentos Disponíveis"))
             .check(matches(isDisplayed()))
     }
 }

@@ -25,19 +25,6 @@ class LoginUITest {
     @get:Rule
     val activityRule = ActivityScenarioRule(LoginActivity::class.java)
 
-//    @Test
-//    fun login_withValidCredentials_showsSuccessMessage() {
-//        // Arrange
-//        onView(withId(R.id.email_edit_text)).perform(replaceText("morador@teste.com"))
-//        onView(withId(R.id.password_edit_text)).perform(replaceText("123"))
-//
-//        // Act
-//        onView(withId(R.id.login_button)).perform(click())
-//
-//        // Assert
-//        onView(withId(R.id.status_text_view)).check(matches(withText("Login bem-sucedido")))
-//    }
-
     @Test
     fun login_withInvalidCredentials_showFailMessage() {
         // Arrange
@@ -48,22 +35,9 @@ class LoginUITest {
         onView(withId(R.id.login_button)).perform(click())
 
         // Assert
-        onView(withId(R.id.status_text_view)).check(matches(withText("Credenciais inválidas")))
+        onView(withId(R.id.status_message)).check(matches(withText("Credenciais inválidas")))
 
     }
-
-//    @Test
-//    fun login_withEmptyCredentials_showsFailMessage() {
-//        // Arrange
-//        onView(withId(R.id.email_edit_text)).perform(replaceText(""))
-//        onView(withId(R.id.password_edit_text)).perform(replaceText(""))
-//
-//        // Act
-//        onView(withId(R.id.login_button)).perform(click())
-//
-//        // Assert
-//        onView(withId(R.id.status_text_view)).check(matches(withText("Credenciais inválidas")))
-//    }
 
     @Test
     fun login_withValidCredentials_shouldNavigateToDashboard() {

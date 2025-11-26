@@ -19,4 +19,5 @@
     <string name="unit_display">Unidade: %s</string>
     <string name="calendar_reserved_dates">Datas Reservadas:</string>
     <string name="selected_date_format">Data Selecionada: %s</string>
+    <string name="areas_comuns">Áreas Comuns</string>
 </resources>

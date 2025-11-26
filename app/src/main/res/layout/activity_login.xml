@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="32dp"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="#E0F7FA">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textSize="24sp"
+        android:textSize="32sp"
         android:textStyle="bold"
+        android:textColor="#00838F"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="48dp"/>
+        android:layout_marginBottom="64dp"/>
 
     <EditText
         android:id="@+id/email_edit_text"
@@ -24,6 +27,8 @@
         android:inputType="textEmailAddress"
         android:autofillHints="emailAddress"
         android:minHeight="48dp"
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
         android:layout_marginBottom="16dp"/>
 
     <EditText
@@ -34,20 +39,29 @@
         android:inputType="textPassword"
         android:autofillHints="password"
         android:minHeight="48dp"
-        android:layout_marginBottom="32dp"/>
+        android:background="@drawable/edit_text_background"
+        android:padding="12dp"
+        android:layout_marginBottom="48dp"/>
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:enabled="false"/>
+        android:enabled="false"
+        android:backgroundTint="@color/button_background_tint"
+        android:textColor="@android:color/white"
+        android:paddingVertical="12dp"/>
 
     <TextView
-        android:id="@+id/status_text_view"
+        android:id="@+id/status_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:textColor="#D32F2F"
+        android:visibility="gone"
+        android:textStyle="italic"
+        tools:text="Credenciais Inválidas"/>
 
 </LinearLayout>

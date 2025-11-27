@@ -33,6 +33,7 @@ class CalendarActivity : AppCompatActivity() {
     private lateinit var residentUnitLabel: TextView
     private lateinit var residentUnitTextView: TextView
     private lateinit var availabilityStatusLabel: TextView
+    private lateinit var emptySelectionMessage: TextView
 
     private var currentAreaId: Int = -1
 
@@ -50,8 +51,10 @@ class CalendarActivity : AppCompatActivity() {
         residentUnitLabel = findViewById(R.id.resident_unit_label)
         residentUnitTextView = findViewById(R.id.resident_unit_text)
         availabilityStatusLabel = findViewById(R.id.availability_status_label)
+        emptySelectionMessage = findViewById(R.id.empty_selection_message)
 
-        // Set initial visibility to GONE
+        // Set initial visibility
+        emptySelectionMessage.visibility = View.VISIBLE
         selectedDateTextView.visibility = View.GONE
         availabilityStatusLabel.visibility = View.GONE
         statusTextView.visibility = View.GONE
@@ -80,6 +83,7 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
+        emptySelectionMessage.visibility = View.GONE
         val selectedCalendar = Calendar.getInstance().apply {
             set(year, month, dayOfMonth)
         }

@@ -77,4 +77,6 @@ _Pré-condição: Você precisará voltar ao Dashboard e entrar no Calendário v
 | **E2E-4.2**    | Verificação de data **Reservada**.  | Tela do Calendário exibida.                         | 1. Clicar e selecionar o dia **10/12/2025** no calendário (`reservation_calendar_view`). | 1. O status deve exibir **"RESERVADO"** (cor Laranja/Amarelo). 2. Os detalhes devem ser visíveis: **"Maria Souza"** e **"Unidade: B-202"**. |            |
 | **E2E-4.3**    | Verificação de data **Disponível**. | Tela do Calendário exibida.                         | 1. Clicar e selecionar o dia **11/12/2025** (ou qualquer outra data não reservada).      | 1. O status deve exibir **"DISPONÍVEL"** (cor Verde). 2. Os detalhes do residente devem estar **ocultos**.                                  |            |
 
-#### Falta o polimento da interface UI-2
+#### Polimento UI-2 OK
+
+#### Build do .apk OK

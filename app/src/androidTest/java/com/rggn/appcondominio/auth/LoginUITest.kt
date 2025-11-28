@@ -27,30 +27,24 @@ class LoginUITest {
 
     @Test
     fun login_withInvalidCredentials_showFailMessage() {
-        // Arrange
         onView(withId(R.id.email_edit_text)).perform(replaceText("visitante@teste.com"))
         onView(withId(R.id.password_edit_text)).perform(replaceText("senhaerrada"))
 
-        // Act
         onView(withId(R.id.login_button)).perform(click())
 
-        // Assert
         onView(withId(R.id.status_message)).check(matches(withText("Credenciais inválidas")))
 
     }
 
     @Test
     fun login_withValidCredentials_shouldNavigateToDashboard() {
-        // Arrange
         onView(withId(R.id.email_edit_text)).perform(replaceText("morador@teste.com"))
         onView(withId(R.id.password_edit_text)).perform(replaceText("123"))
 
         Intents.init()
 
-        // Act
         onView(withId(R.id.login_button)).perform(click())
 
-        // Assert
         intended(hasComponent(DashboardActivity::class.java.name))
 
         Intents.release()
@@ -58,24 +52,19 @@ class LoginUITest {
 
     @Test
     fun loginButton_shouldBeDisabled_whenFieldsAreEmpty() {
-        // Assert
         onView(withId(R.id.login_button))
             .check(matches(not(isEnabled())))
     }
 
     @Test
     fun loginButton_shouldBeEnabled_whenBothFieldsAreFilled() {
-        // 1. Arrange & Act
         onView(withId(R.id.email_edit_text)).perform(replaceText("a"))
 
-        // Assert
         onView(withId(R.id.login_button))
             .check(matches(not(isEnabled())))
 
-        // 2. Arrange & Act
         onView(withId(R.id.password_edit_text)).perform(replaceText("b"))
 
-        // Assert
         onView(withId(R.id.login_button))
             .check(matches(isEnabled()))
     }

@@ -29,24 +29,16 @@ class DashboardViewModelTest {
     fun setup() {
         mockDataService = mock(DataService::class.java)
 
-        // NOVO: Configura o mock para getCommonAreas()
         `when`(mockDataService.getCommonAreas()).thenReturn(areaList)
 
-        // Inicializa o View Model com o mock
         viewModel = DashboardViewModel(mockDataService)
     }
 
     @Test
     fun loadAreas_deveChamarDataServiceEExporResultado() {
-        // Arrange
-        // (O ViewModel já chamou loadAreas() no seu bloco init{})
 
-        // Act (Não precisamos chamar novamente, pois o init() já fez)
-
-        // Assert: Verifica se o serviço correto foi chamado APENAS UMA VEZ
         verify(mockDataService).getCommonAreas()
 
-        // Assert: Verifica se o LiveData 'areas' foi atualizado
         val areasLiveData = viewModel.areas.value
         assertNotNull(areasLiveData)
         assertEquals(2, areasLiveData?.size)

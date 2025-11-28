@@ -1,0 +1,296 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CalendarActivity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.rggn.appcondominio.reservation</a>
+</div>
+
+<h1>Coverage Summary for Class: CalendarActivity (com.rggn.appcondominio.reservation)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CalendarActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/62)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CalendarActivity$Companion</td>
+  </tr>
+  <tr>
+    <td class="name">CalendarActivity$special$$inlined$viewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">CalendarActivity$special$$inlined$viewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">CalendarActivity$special$$inlined$viewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/62)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.rggn.appcondominio.reservation
+&nbsp;
+&nbsp;import android.graphics.Color
+&nbsp;import android.os.Bundle
+&nbsp;import android.view.View
+&nbsp;import android.widget.CalendarView
+&nbsp;import android.widget.TextView
+&nbsp;import androidx.activity.viewModels
+&nbsp;import androidx.appcompat.app.AppCompatActivity
+&nbsp;import androidx.lifecycle.Observer
+&nbsp;import com.rggn.appcondominio.R
+&nbsp;import com.rggn.appcondominio.data.DataService
+&nbsp;import java.text.SimpleDateFormat
+&nbsp;import java.util.Calendar
+&nbsp;import java.util.Locale
+&nbsp;
+<b class="nc">&nbsp;class CalendarActivity : AppCompatActivity() {</b>
+&nbsp;
+&nbsp;    companion object {
+&nbsp;        const val EXTRA_AREA_ID = &quot;extra_area_id&quot;
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    private val viewModel: ReservationViewModel by viewModels {</b>
+<b class="nc">&nbsp;        ReservationViewModelFactory(DataService())</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private lateinit var areaTitleTextView: TextView
+&nbsp;    private lateinit var reservationCalendarView: CalendarView
+&nbsp;    private lateinit var selectedDateTextView: TextView
+&nbsp;    private lateinit var statusTextView: TextView
+&nbsp;    private lateinit var reservedByLabel: TextView
+&nbsp;    private lateinit var residentNameTextView: TextView
+&nbsp;    private lateinit var residentUnitLabel: TextView
+&nbsp;    private lateinit var residentUnitTextView: TextView
+&nbsp;    private lateinit var availabilityStatusLabel: TextView
+&nbsp;    private lateinit var emptySelectionMessage: TextView
+&nbsp;
+<b class="nc">&nbsp;    private var currentAreaId: Int = -1</b>
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+<b class="nc">&nbsp;        setContentView(R.layout.activity_calendar)</b>
+&nbsp;
+&nbsp;        // Initialize Views
+<b class="nc">&nbsp;        areaTitleTextView = findViewById(R.id.area_title_text)</b>
+<b class="nc">&nbsp;        reservationCalendarView = findViewById(R.id.reservation_calendar_view)</b>
+<b class="nc">&nbsp;        selectedDateTextView = findViewById(R.id.selected_date_text)</b>
+<b class="nc">&nbsp;        statusTextView = findViewById(R.id.status_text)</b>
+<b class="nc">&nbsp;        reservedByLabel = findViewById(R.id.reserved_by_label)</b>
+<b class="nc">&nbsp;        residentNameTextView = findViewById(R.id.resident_name_text)</b>
+<b class="nc">&nbsp;        residentUnitLabel = findViewById(R.id.resident_unit_label)</b>
+<b class="nc">&nbsp;        residentUnitTextView = findViewById(R.id.resident_unit_text)</b>
+<b class="nc">&nbsp;        availabilityStatusLabel = findViewById(R.id.availability_status_label)</b>
+<b class="nc">&nbsp;        emptySelectionMessage = findViewById(R.id.empty_selection_message)</b>
+&nbsp;
+&nbsp;        // Set initial visibility
+<b class="nc">&nbsp;        emptySelectionMessage.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;        selectedDateTextView.visibility = View.GONE</b>
+<b class="nc">&nbsp;        availabilityStatusLabel.visibility = View.GONE</b>
+<b class="nc">&nbsp;        statusTextView.visibility = View.GONE</b>
+<b class="nc">&nbsp;        reservedByLabel.visibility = View.GONE</b>
+<b class="nc">&nbsp;        residentNameTextView.visibility = View.GONE</b>
+<b class="nc">&nbsp;        residentUnitLabel.visibility = View.GONE</b>
+<b class="nc">&nbsp;        residentUnitTextView.visibility = View.GONE</b>
+&nbsp;
+<b class="nc">&nbsp;        currentAreaId = intent.getIntExtra(EXTRA_AREA_ID, -1)</b>
+&nbsp;
+<b class="nc">&nbsp;        if (currentAreaId != -1) {</b>
+<b class="nc">&nbsp;            val areaName = DataService().getAreaNameById(currentAreaId)</b>
+<b class="nc">&nbsp;            areaTitleTextView.text = areaName</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            areaTitleTextView.text = &quot;Erro: ID da Área não encontrado.&quot;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        setupListeners()</b>
+<b class="nc">&nbsp;        observeViewModel()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun setupListeners() {
+<b class="nc">&nbsp;        reservationCalendarView.setOnDateChangeListener { _, year, month, dayOfMonth -&gt;</b>
+<b class="nc">&nbsp;            onDateSelected(year, month, dayOfMonth)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    fun onDateSelected(year: Int, month: Int, dayOfMonth: Int) {
+<b class="nc">&nbsp;        emptySelectionMessage.visibility = View.GONE</b>
+<b class="nc">&nbsp;        val selectedCalendar = Calendar.getInstance().apply {</b>
+<b class="nc">&nbsp;            set(year, month, dayOfMonth)</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        val dateString = SimpleDateFormat(&quot;dd/MM/yyyy&quot;, Locale.getDefault()).format(selectedCalendar.time)</b>
+<b class="nc">&nbsp;        selectedDateTextView.text = &quot;Data Selecionada: $dateString&quot;</b>
+<b class="nc">&nbsp;        viewModel.checkAvailability(currentAreaId, selectedCalendar)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun observeViewModel() {
+<b class="nc">&nbsp;        viewModel.availabilityStatus.observe(this, Observer { status -&gt;</b>
+<b class="nc">&nbsp;            updateAvailabilityStatus(status.isAvailable, status.residentName, status.residentUnit)</b>
+&nbsp;        })
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun updateAvailabilityStatus(isAvailable: Boolean, residentName: String?, residentUnit: String?) {
+<b class="nc">&nbsp;        selectedDateTextView.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;        availabilityStatusLabel.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;        statusTextView.visibility = View.VISIBLE</b>
+&nbsp;
+<b class="nc">&nbsp;        if (isAvailable) {</b>
+<b class="nc">&nbsp;            statusTextView.text = &quot;DISPONÍVEL&quot;</b>
+<b class="nc">&nbsp;            statusTextView.setBackgroundColor(Color.parseColor(&quot;#4CAF50&quot;)) // Verde</b>
+<b class="nc">&nbsp;            statusTextView.setTextColor(Color.WHITE)</b>
+&nbsp;
+<b class="nc">&nbsp;            reservedByLabel.visibility = View.GONE</b>
+<b class="nc">&nbsp;            residentNameTextView.visibility = View.GONE</b>
+<b class="nc">&nbsp;            residentUnitLabel.visibility = View.GONE</b>
+<b class="nc">&nbsp;            residentUnitTextView.visibility = View.GONE</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            statusTextView.text = &quot;RESERVADO&quot;</b>
+<b class="nc">&nbsp;            statusTextView.setBackgroundColor(Color.parseColor(&quot;#FF9800&quot;)) // Laranja/Amarelo</b>
+<b class="nc">&nbsp;            statusTextView.setTextColor(Color.BLACK)</b>
+&nbsp;
+<b class="nc">&nbsp;            reservedByLabel.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;            residentNameTextView.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;            residentUnitLabel.visibility = View.VISIBLE</b>
+<b class="nc">&nbsp;            residentUnitTextView.visibility = View.VISIBLE</b>
+&nbsp;
+<b class="nc">&nbsp;            residentNameTextView.text = residentName ?: &quot;Não Informado&quot;</b>
+<b class="nc">&nbsp;            residentUnitTextView.text = &quot;Unidade: ${residentUnit ?: &quot;-&quot;}&quot;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-28 08:39</div>
+</div>
+</body>
+</html>

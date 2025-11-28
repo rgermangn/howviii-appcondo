@@ -1,0 +1,149 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CommonArea</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.rggn.appcondominio.data</a>
+</div>
+
+<h1>Coverage Summary for Class: CommonArea (com.rggn.appcondominio.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CommonArea</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.rggn.appcondominio.data
+&nbsp;
+&nbsp;data class Resident(val id: Int, val name: String, val unit: String)
+<b class="fc">&nbsp;data class CommonArea(val id: Int, val name: String, val capacity: Int)</b>
+&nbsp;data class AvailabilityStatus(val isAvailable: Boolean, val residentName: String?, val residentUnit: String?)
+&nbsp;
+&nbsp;class DataService {
+&nbsp;
+&nbsp;    fun getCommonAreas(): List&lt;CommonArea&gt; {
+&nbsp;        return listOf(
+&nbsp;            CommonArea(id = 10, name = &quot;Salão de Festas&quot;, capacity = 40),
+&nbsp;            CommonArea(id = 20, name = &quot;Churrasqueira Gourmet&quot;, capacity = 20)
+&nbsp;        )
+&nbsp;    }
+&nbsp;
+&nbsp;    fun checkAvailability(areaId: Int, date: String): AvailabilityStatus {
+&nbsp;        return when {
+&nbsp;            areaId == 10 &amp;&amp; date == &quot;05/12/2025&quot; -&gt; {
+&nbsp;                AvailabilityStatus(
+&nbsp;                    isAvailable = false,
+&nbsp;                    residentName = &quot;João Silva&quot;,
+&nbsp;                    residentUnit = &quot;A-101&quot;
+&nbsp;                )
+&nbsp;            }
+&nbsp;            areaId == 20 &amp;&amp; date == &quot;10/12/2025&quot; -&gt; {
+&nbsp;                AvailabilityStatus(
+&nbsp;                    isAvailable = false,
+&nbsp;                    residentName = &quot;Maria Souza&quot;,
+&nbsp;                    residentUnit = &quot;B-202&quot;
+&nbsp;                )
+&nbsp;            }
+&nbsp;            else -&gt; {
+&nbsp;                AvailabilityStatus(
+&nbsp;                    isAvailable = true,
+&nbsp;                    residentName = null,
+&nbsp;                    residentUnit = null
+&nbsp;                )
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    fun getAreaNameById(areaId: Int): String {
+&nbsp;        return getCommonAreas().find { it.id == areaId }?.name ?: &quot;Área desconhecida&quot;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-28 08:39</div>
+</div>
+</body>
+</html>

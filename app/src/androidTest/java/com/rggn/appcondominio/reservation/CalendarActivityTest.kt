@@ -19,7 +19,7 @@ import java.util.Calendar
 class CalendarActivityTest {
 
     private val targetContext: Context = ApplicationProvider.getApplicationContext()
-    private val testAreaId = 10 // Churrasqueira
+    private val testAreaId = 10
 
     private val intent: Intent = Intent(targetContext, CalendarActivity::class.java).apply {
         putExtra(CalendarActivity.EXTRA_AREA_ID, testAreaId)
@@ -36,14 +36,12 @@ class CalendarActivityTest {
 
     @Test
     fun CAL_T4_cliqueEmDataDisponivel_deveExibirStatusDisponivel() {
-        // Arrange: Select a date known to be available
         activityRule.scenario.onActivity { activity ->
             activity.runOnUiThread {
                 activity.onDateSelected(2025, Calendar.DECEMBER, 10)
             }
         }
 
-        // Assert
         onView(withId(R.id.selected_date_text)).check(matches(withText("Data Selecionada: 10/12/2025")))
         onView(withId(R.id.status_text)).check(matches(withText("DISPONÍVEL")))
         onView(withId(R.id.reserved_by_label)).check(matches(withEffectiveVisibility(Visibility.GONE)))
@@ -51,14 +49,12 @@ class CalendarActivityTest {
 
     @Test
     fun CAL_T4_cliqueEmDataReservada_deveExibirStatusReservado() {
-        // Arrange: Select a date known to be reserved
         activityRule.scenario.onActivity { activity ->
             activity.runOnUiThread {
                 activity.onDateSelected(2025, Calendar.DECEMBER, 5)
             }
         }
 
-        // Assert
         onView(withId(R.id.selected_date_text)).check(matches(withText("Data Selecionada: 05/12/2025")))
         onView(withId(R.id.status_text)).check(matches(withText("RESERVADO")))
 

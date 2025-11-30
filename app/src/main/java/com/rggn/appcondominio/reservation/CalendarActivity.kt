@@ -41,7 +41,6 @@ class CalendarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
 
-        // Initialize Views
         areaTitleTextView = findViewById(R.id.area_title_text)
         reservationCalendarView = findViewById(R.id.reservation_calendar_view)
         selectedDateTextView = findViewById(R.id.selected_date_text)
@@ -53,7 +52,6 @@ class CalendarActivity : AppCompatActivity() {
         availabilityStatusLabel = findViewById(R.id.availability_status_label)
         emptySelectionMessage = findViewById(R.id.empty_selection_message)
 
-        // Set initial visibility
         emptySelectionMessage.visibility = View.VISIBLE
         selectedDateTextView.visibility = View.GONE
         availabilityStatusLabel.visibility = View.GONE
@@ -105,7 +103,7 @@ class CalendarActivity : AppCompatActivity() {
 
         if (isAvailable) {
             statusTextView.text = "DISPONÍVEL"
-            statusTextView.setBackgroundColor(Color.parseColor("#4CAF50")) // Verde
+            statusTextView.setBackgroundColor(Color.parseColor("#4CAF50"))
             statusTextView.setTextColor(Color.WHITE)
 
             reservedByLabel.visibility = View.GONE
@@ -114,7 +112,7 @@ class CalendarActivity : AppCompatActivity() {
             residentUnitTextView.visibility = View.GONE
         } else {
             statusTextView.text = "RESERVADO"
-            statusTextView.setBackgroundColor(Color.parseColor("#FF9800")) // Laranja/Amarelo
+            statusTextView.setBackgroundColor(Color.parseColor("#FF9800"))
             statusTextView.setTextColor(Color.BLACK)
 
             reservedByLabel.visibility = View.VISIBLE

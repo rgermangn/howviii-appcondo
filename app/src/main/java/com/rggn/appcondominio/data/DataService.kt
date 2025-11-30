@@ -1,6 +1,5 @@
 package com.rggn.appcondominio.data
 
-data class Resident(val id: Int, val name: String, val unit: String)
 data class CommonArea(val id: Int, val name: String, val capacity: Int)
 data class AvailabilityStatus(val isAvailable: Boolean, val residentName: String?, val residentUnit: String?)
 

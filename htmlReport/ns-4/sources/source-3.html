@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DashboardViewModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.rggn.appcondominio.home</a>
+</div>
+
+<h1>Coverage Summary for Class: DashboardViewModel (com.rggn.appcondominio.home)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DashboardViewModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.rggn.appcondominio.home
+&nbsp;
+&nbsp;import androidx.lifecycle.LiveData
+&nbsp;import androidx.lifecycle.MutableLiveData
+&nbsp;import androidx.lifecycle.ViewModel
+&nbsp;import com.rggn.appcondominio.data.CommonArea
+&nbsp;import com.rggn.appcondominio.data.DataService
+&nbsp;
+&nbsp;class DashboardViewModel(
+<b class="fc">&nbsp;    private val dataService: DataService = DataService()</b>
+<b class="nc">&nbsp;) : ViewModel() {</b>
+&nbsp;
+&nbsp;    // 1. LiveData: Expondo a lista de ÁREAS COMUNS
+<b class="fc">&nbsp;    private val _areas = MutableLiveData&lt;List&lt;CommonArea&gt;&gt;()</b>
+<b class="fc">&nbsp;    val areas: LiveData&lt;List&lt;CommonArea&gt;&gt; = _areas // Variável pública que a Activity observa</b>
+&nbsp;
+&nbsp;    // 2. Função de Carregamento
+&nbsp;    fun loadAreas() {
+&nbsp;        // Simplesmente obtém os dados mockados do serviço (CommonArea)
+<b class="fc">&nbsp;        val areaList = dataService.getCommonAreas()</b>
+&nbsp;
+&nbsp;        // Atualiza o LiveData
+<b class="fc">&nbsp;        _areas.value = areaList</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    // Carrega dados assim que o ViewModel é criado
+<b class="fc">&nbsp;    init {</b>
+<b class="fc">&nbsp;        loadAreas()</b>
+<b class="fc">&nbsp;    }</b>
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-11-28 08:39</div>
+</div>
+</body>
+</html>
